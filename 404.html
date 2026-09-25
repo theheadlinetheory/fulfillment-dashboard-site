@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Dashboard</title>
+    <meta name="description" content="The Headline Theory - Client Dashboard">
+    <meta name="author" content="The Headline Theory" />
+    <link rel="icon" href="/fulfillment-dashboard-site/favicon.ico" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Client Dashboard">
+    <meta property="og:description" content="The Headline Theory - Client Dashboard">
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Client Dashboard">
+    <meta name="twitter:description" content="The Headline Theory - Client Dashboard">
+
+    <script>
+      // ── Stale-index guard ──────────────────────────────────────────────
+      // Vite content-hashes every asset, so the ONLY file that can go stale is
+      // this document. GitHub Pages serves it with a ~10 minute CDN max-age and
+      // offers no way to set cache headers or purge, so after a deploy an open
+      // tab — or a fresh load — can keep running the previous build.
+      //
+      // Ported from tht-crm/index.html, which needs the same treatment for the
+      // same reason. scripts/postbuild-pages.mjs stamps 9fd3e76 and writes the
+      // matching version.json next to this file.
+      //
+      // Inert outside a Pages build: `npm run dev` and the Vercel build leave the
+      // placeholder in place and have no version.json, so the fetch just fails
+      // into the catch and nothing happens.
+      window.__APP_V = '9fd3e76';
+      (function () {
+        function check() {
+          fetch('/fulfillment-dashboard-site/version.json?t=' + Date.now(), { cache: 'no-store' })
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (d) {
+              if (!d || !d.v || d.v === window.__APP_V) return;
+              // Key the guard on the NEW version: if the CDN is still handing out
+              // the old document, this reloads once and then stops rather than
+              // looping.
+              var k = '__vreload_' + d.v;
+              try {
+                if (sessionStorage.getItem(k)) return;
+                sessionStorage.setItem(k, '1');
+              } catch (e) { /* private mode — reload once, unguarded */ }
+              location.reload();
+            })
+            .catch(function () { /* offline or no version.json — ignore */ });
+        }
+        check();
+        document.addEventListener('visibilitychange', function () {
+          if (!document.hidden) check();
+        });
+      })();
+    </script>
+  <script type="module" crossorigin src="/fulfillment-dashboard-site/assets/index-BDGCyZMt.js"></script>
+  <link rel="stylesheet" crossorigin href="/fulfillment-dashboard-site/assets/index-C4Xz79bd.css">
+</head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
