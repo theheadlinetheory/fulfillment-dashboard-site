@@ -1,0 +1,5 @@
+# Internal tool. It sits on a public URL because GitHub Pages on a Free-plan org
+# cannot serve a private repo, not because it is meant to be found — the gate is
+# the Google sign-in, not obscurity. Keep it out of search results.
+User-agent: *
+Disallow: /
